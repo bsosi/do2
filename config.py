@@ -31,7 +31,7 @@ MONGO_DB_URI = getenv("MONGO_DB_URI")
 DURATION_LIMIT_MIN = safe_getenv_int("DURATION_LIMIT", 2001)
 
 # Chat id of a group for logging bot's activities
-LOGGER_ID = safe_getenv_int("LOGGER_ID", -1002053793790)
+LOGGER_ID = safe_getenv_int("LOGGER_ID", -1002204240032)
 
 # Get this value from @FallenxBot on Telegram by /id
 OWNER_ID = safe_getenv_int("OWNER_ID", 1895219306)
