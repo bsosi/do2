@@ -11,6 +11,7 @@ motor
 pillow
 psutil
 py-tgcalls==0.9.7
+pyrofork
 pykeyboard
 python-dotenv
 pyyaml
@@ -20,6 +21,5 @@ spotipy
 tgcrypto
 unidecode
 yt-dlp
-git+https://github.com/naya1503/mypyrogram
 git+https://github.com/alexmercerind/youtube-search-python@main
 git+https://github.com/joetats/youtube_search@master
