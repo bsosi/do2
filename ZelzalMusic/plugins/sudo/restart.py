@@ -115,28 +115,17 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(command(["اعاده تشغيل"]) & SUDOERS)
-async def restart_(_, message):
-    response = await message.reply_text("- جـارِ إعـادة التشغيـل ...")
-    ac_chats = await get_active_chats()
-    for x in ac_chats:
-        try:
-            await app.send_message(
-                chat_id=int(x),
-                text=f"» {app.mention} في وضـع اعـادة التشغيـل ...\n\n» انتظـر دقيقـه ⏳. . .",
-            )
-            await remove_active_chat(x)
-            await remove_active_video_chat(x)
-        except:
-            pass
+SUDOERS and restart_app() elsewhere
 
-    try:
-        shutil.rmtree("downloads")
-        shutil.rmtree("raw_files")
-        shutil.rmtree("cache")
-    except:
-        pass
-    await response.edit_text(
-        "» جـارِ اعـادة تشغيـل البـوت ...\n» انتظـر  ⏳\n» حتـى يعمـل البـوت ☑️..."
-    )
-    os.system(f"kill -9 {os.getpid()} && bash start")
+@app.on_message(filters.command(["اعادة تشغيل", "⦗ اعادة تشغيل ⦘"]) & SUDOERS)
+async def manual_restart(client: Client, message: Message):
+    response = await message.reply_text("⦗ جاري اعادة التشغيل ⦘")
+    await restart_app()
+    await response.edit_text("⦗ اعادة التشغيل جاريٍ انتظر قليلاً ... ⦘")
+
+async def periodic_restart():
+    while True:
+        await asyncio.sleep(21600) 
+        await restart_app()
+
+app.loop.create_task(periodic_restart())
